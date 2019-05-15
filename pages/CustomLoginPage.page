@@ -1,0 +1,51 @@
+<apex:page sidebar="false" showHeader="false" controller="CustomLoginController">
+    <apex:slds />
+    <style>
+    .setSecretInputBlock {background-color: rgb(255, 255, 255); border: 1px solid rgb(217, 219, 221); border-radius: .25rem;
+    width: 100%; transition: border .1s linear,background-color .1s linear;display: inline-block; padding: 0 1rem 0 .75rem;
+    line-height: 1.875rem;min-height: calc(1.875rem + (1px * 2));}
+    </style>
+    <div>
+        <apex:form >
+            <div class="demo-only" style="height: 640px;">
+                <section  role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                    <div class="slds-modal__container">
+                        <header class="slds-modal__header">
+                            <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Login Page</h2>
+                        </header>
+                        <div class="slds-modal__content slds-p-around_medium" id="modalcontent">
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="text-input-id-1">User Name</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputText id="test1" styleClass="setSecretInputBlock"  html-placeholder="User Name" value="{!UserName}" />
+                                </div>
+                            </div>
+                            <div class="slds-form-element">
+                                <label class="slds-form-element__label" for="text-input-id-1">Password</label>
+                                <div class="slds-form-element__control">
+                                    <apex:inputSecret id="test2" styleClass="setSecretInputBlock" html-placeholder="Password" value="{!LoginPass}" />
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <apex:actionFunction action="{!checkLoginCredentials}" name="LoginCre" reRender="modalcontent" />
+                        <apex:actionFunction action="{!resetButton}" name="resetButton" reRender="test1,test2" />
+                        <footer class="slds-modal__footer">
+                            <a href="javascript();"> Create new Account </a>
+                            <input type="button" class="slds-button slds-button_brand" value="Re-set" onclick="resetButton();" />
+                            <input type="button" class="slds-button slds-button_brand" value="login" onclick="LoginCre();" />
+                        </footer>
+                    </div>
+                </section>
+                <div class="slds-backdrop slds-backdrop_open"></div>
+            </div>
+        </apex:form>
+    </div>
+    <script>
+    function checkCre(){
+    console.log('in');
+        LoginCre();
+        console.log('called');
+    }
+    </script>
+</apex:page>
